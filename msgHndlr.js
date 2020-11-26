@@ -200,6 +200,15 @@ module.exports = msgHandler = async (client, message) => {
                 client.reply(from, mess.error.Yt3, id)
             }
             break
+        case 'sreddit':
+            if (args.length == 0) return aruga.reply(from, `Untuk mencari gambar di sub reddit\nketik: ${prefix}sreddit [search]\ncontoh: ${prefix}sreddit naruto`, id)
+            const carireddit = body.slice(9)
+            const hasilreddit = await images.sreddit(carireddit)
+            await aruga.sendFileFromUrl(from, hasilreddit, '', '', id)
+            .catch(() => {
+                aruga.reply(from, 'Ada yang Error!', id)
+            })
+	    break
         case '!ytmp4':
             if (args.length === 1) return client.reply(from, 'Kirim perintah *!ytmp4 [linkYt]*, untuk contoh silahkan kirim perintah *!readme*')
             let isLin = args[1].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)
